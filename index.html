@@ -68,6 +68,49 @@
             }
         }
 
+        function game() {
+            let playerScore = 0;
+            let computerScore = 0;
+
+            for (let i = 0; i < 5; i++){
+                let playerSelection;
+                // Keep asking until valid choice is given
+                do {
+                    playerSelection = window.prompt("Round " + (i + 1) + ": Rock, paper, or scissors?");
+                    if (playerSelection == null || playerSelection.toLowerCase().trim() !== ROCK 
+                        && playerSelection.toLowerCase().trim() !== PAPER && playerSelection.toLowerCase().trim() !== SCISSORS){
+                            console.log("You must enter rock, paper, or scissors");
+                        }
+                } while (playerSelection == null || playerSelection.toLowerCase().trim() !== ROCK 
+                    && playerSelection.toLowerCase().trim() !== PAPER && playerSelection.toLowerCase().trim() !== SCISSORS);
+
+                // Score calculation
+                let results = playRound(playerSelection, computerPlay());
+                console.log(results);
+                if (results.indexOf("You win!") > -1){
+                    playerScore++;
+                }
+                else if (results.indexOf("You lose!") > -1){
+                    computerScore++;
+                }
+                console.log("Player score: " + playerScore + "\nComputer score: " + computerScore);
+            }
+
+            console.log("END OF GAME")
+            if (playerScore > computerScore){
+                console.log("You WIN!");
+            }
+            else if (playerScore < computerScore) {
+                console.log("You LOSE!");
+            }
+            else {
+                console.log("It's a TIE!")
+            }
+        }
+
+        // Start game
+        game();
+
     </script>
 </body>
 </html>
