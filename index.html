@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+    <script>
+        const ROCK = "rock";
+        const PAPER = "paper";
+        const SCISSORS = "scissors";
+
+        function computerPlay(){
+            let choice = Math.floor(Math.random() * 3);
+            switch (choice){
+                case 0:
+                    return ROCK;
+                case 1:
+                    return PAPER;
+                default:
+                    return SCISSORS;  // Even if choice != 2, computer should still have a valid selection. 
+            }
+        }
+
+        function playRound(playerSelection, computerSelection){
+            if (playerSelection.trim()){    // String with only whitespace is a truthy value. Trimming it will make it count as "No choice given".
+                if (playerSelection.toLowerCase().trim() === ROCK){
+                    if (computerSelection === ROCK){
+                        return "It's a tie! Both players chose rock.";
+                    }
+                    else if (computerSelection === PAPER){
+                        return "You lose!. Paper covers rock.";
+                    }
+                    else {
+                        return "You win! Rock crushes scissors.";
+                    }
+                }
+                else if (playerSelection.toLowerCase().trim() === PAPER){
+                    if (computerSelection === ROCK){
+                        return "You win! Paper covers rock.";
+                    }
+                    else if (computerSelection === PAPER){
+                        return "It's a tie! Both players chose paper.";
+                    }
+                    else {
+                        return "You lose! Scissor cuts paper.";
+                    }
+                }
+                else if (playerSelection.toLowerCase().trim() === SCISSORS){
+                    if (computerSelection === ROCK){
+                        return "You lose! Rock crushes scissors";
+                    }
+                    else if (computerSelection === PAPER){
+                        return "You win!. Scissors cuts paper.";
+                    }
+                    else {
+                        return "It's a tie! You both chose scissors.";
+                    }
+                }
+                else{
+                    return "Error: " + playerSelection + " is not a valid choice.";
+                }
+            }
+            else {
+                return "Error: No choice given."
+            }
+        }
+
+    </script>
+</body>
+</html>
