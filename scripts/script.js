@@ -29,13 +29,13 @@ function onSelectionClick(e) {
 
 function onReplayClick(e) {
     const gameStatus = document.querySelector("#game-status");
-    gameStatus.textContent = "Choose below:";
     if (gameStatus.textContent == "YOU WIN!") {
         gameStatus.classList.remove('game-status--win');
     }
     else if (gameStatus.textContent == "YOU LOSE!") {
         gameStatus.classList.remove('game-status--lose');
     }
+    gameStatus.textContent = "Choose below:";
 
     const playerSelectionImage = document.querySelector("#player-selection-image");
     const computerSelectionImage = document.querySelector("#computer-selection-image");
