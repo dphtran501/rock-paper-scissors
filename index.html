@@ -1,116 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Rock, Paper, Scissors</title>
+
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Bangers|Shadows+Into+Light&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <script>
-        const ROCK = "rock";
-        const PAPER = "paper";
-        const SCISSORS = "scissors";
+    <h1 id="title">Rock, Paper, Scissors!</h1>
+    <h2 id="game-status">Choose below:</h2>
+    <div id="players-selection-display">
+        <div id="player-selection-display" class="selection-display">
+            <h3>Player selects:</h3>
+            <img id="player-selection-image" src="images/rock.svg" alt="Rock">
+        </div>
+        <div id="computer-selection-display" class=selection-display>
+            <h3>Computer selects:</h3>
+            <img id="computer-selection-image" src="images/rock.svg" alt="Rock">
+        </div>
+    </div>
+    <div id="selection-buttons">
+        <img id="rock-button" class="selection-button selection-button--hover" src="images/rock.svg" alt="Rock"
+            title="Rock">
+        <img id="paper-button" class="selection-button selection-button--hover" src="images/paper.svg" alt="Paper"
+            title="Paper">
+        <img id="scissors-button" class="selection-button selection-button--hover" src="images/scissors.svg"
+            alt="Scissors" title="Scissors">
+    </div>
+    <div id="player-scorebox" class="scorebox">
+        <p id="player-score-label" class="score-label">Player:</p>
+        <p id="player-score" class="score">0</p>
+    </div>
+    <div id="computer-scorebox" class="scorebox">
+        <p id="computer-score-label" class="score-label">Computer:</p>
+        <p id="computer-score" class="score">0</p>
+    </div>
+    <div id="replay-div">
+        <img id="replay-button" src="images/replay.svg" alt="Replay" title="Replay">
+    </div>
+    <div class="footer">
+        <p>
+            Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a
+                href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+        </p>
+    </div>
 
-        function computerPlay(){
-            let choice = Math.floor(Math.random() * 3);
-            switch (choice){
-                case 0:
-                    return ROCK;
-                case 1:
-                    return PAPER;
-                default:
-                    return SCISSORS;  // Even if choice != 2, computer should still have a valid selection. 
-            }
-        }
-
-        function playRound(playerSelection, computerSelection){
-            if (playerSelection.trim()){    // String with only whitespace is a truthy value. Trimming it will make it count as "No choice given".
-                if (playerSelection.toLowerCase().trim() === ROCK){
-                    if (computerSelection === ROCK){
-                        return "It's a tie! Both players chose rock.";
-                    }
-                    else if (computerSelection === PAPER){
-                        return "You lose!. Paper covers rock.";
-                    }
-                    else {
-                        return "You win! Rock crushes scissors.";
-                    }
-                }
-                else if (playerSelection.toLowerCase().trim() === PAPER){
-                    if (computerSelection === ROCK){
-                        return "You win! Paper covers rock.";
-                    }
-                    else if (computerSelection === PAPER){
-                        return "It's a tie! Both players chose paper.";
-                    }
-                    else {
-                        return "You lose! Scissor cuts paper.";
-                    }
-                }
-                else if (playerSelection.toLowerCase().trim() === SCISSORS){
-                    if (computerSelection === ROCK){
-                        return "You lose! Rock crushes scissors";
-                    }
-                    else if (computerSelection === PAPER){
-                        return "You win!. Scissors cuts paper.";
-                    }
-                    else {
-                        return "It's a tie! You both chose scissors.";
-                    }
-                }
-                else{
-                    return "Error: " + playerSelection + " is not a valid choice.";
-                }
-            }
-            else {
-                return "Error: No choice given."
-            }
-        }
-
-        function game() {
-            let playerScore = 0;
-            let computerScore = 0;
-
-            for (let i = 0; i < 5; i++){
-                let playerSelection;
-                // Keep asking until valid choice is given
-                do {
-                    playerSelection = window.prompt("Round " + (i + 1) + ": Rock, paper, or scissors?");
-                    if (playerSelection == null || playerSelection.toLowerCase().trim() !== ROCK 
-                        && playerSelection.toLowerCase().trim() !== PAPER && playerSelection.toLowerCase().trim() !== SCISSORS){
-                            console.log("You must enter rock, paper, or scissors");
-                        }
-                } while (playerSelection == null || playerSelection.toLowerCase().trim() !== ROCK 
-                    && playerSelection.toLowerCase().trim() !== PAPER && playerSelection.toLowerCase().trim() !== SCISSORS);
-
-                // Score calculation
-                let results = playRound(playerSelection, computerPlay());
-                console.log(results);
-                if (results.indexOf("You win!") > -1){
-                    playerScore++;
-                }
-                else if (results.indexOf("You lose!") > -1){
-                    computerScore++;
-                }
-                console.log("Player score: " + playerScore + "\nComputer score: " + computerScore);
-            }
-
-            console.log("END OF GAME")
-            if (playerScore > computerScore){
-                console.log("You WIN!");
-            }
-            else if (playerScore < computerScore) {
-                console.log("You LOSE!");
-            }
-            else {
-                console.log("It's a TIE!")
-            }
-        }
-
-        // Start game
-        game();
-
-    </script>
+    <script src="scripts/script.js"></script>
 </body>
+
 </html>
